@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyA9aTlgYyrwuhr0NujpAkG2BBvUfPiqrOk",
+    		  authDomain: "cobaan-9d92e.firebaseapp.com",
+    		  databaseURL: "https://cobaan-9d92e-default-rtdb.firebaseio.com/",
+    		  projectId: "cobaan-9d92e",
+    		  storageBucket: "cobaan-9d92e.appspot.com",
+    		  messagingSenderId: "772584044256",
+    		  appId: "1:772584044256:web:9d0fbd087407d43cd18285",
+    		  measurementId: "G-PHCR39EQCV"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+   </script>
+
+</head>
+
+<body style="background-color: whitesmoke">
+    <nav class="navbar fixed-top bg-dark navbar-expand-lg" style=" padding: 1%;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" >
+        <div class="container-fluid">
+            <a class="navbar-brand" style="color: white;padding-left: 10%; font-family: Rockwell;" href="home.html">
+                <img src="images/logo2.png" alt="Bootstrap" width="35" height="35">
+                JamalGaming
+            </a>
+          <button class="navbar-toggler bg-light" style="background-color: #376E6F;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" ></span>
+          </button>
+          <div class="collapse navbar-collapse" style="padding-right: 5%;" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item" style="color: white;">
+                <a class="nav-link" href="home.html" style="font-family: sans-serif;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pricelist.html" style="font-family: sans-serif;">Price List</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div class=" col-12 card-image">
+        
+            <img src="images/HD1.jpeg" alt="" style="width: 100%;">
+        
+    </div>
+
+    <div class="col-12 container">
+        <form class="row" style="font-family: 'sans-serif'; text-align: center;color: black;padding-top: 2%;">
+            <div class="col-md-4">
+                <img src="images/valorant.jpg" alt="Slide 3 " style="width:50%;">
+                <h5 style="font-weight: bold;">CARA MEMBELI VALORANT POINT</h5>
+                <p style="text-align: left;">1. Masukkan Riot ID & Tagline akun kalian</p>
+                <p style="text-align: left;">2. Pilih Nominal Valorant Point yang diinginkan</p>
+                <p style="text-align: left;">3. Pilih Metode Pembayaran</p>
+                <p style="text-align: left;">4. Masukkan alamat e-mail kalian untuk rincian pesanan</p>
+                <p style="text-align: left;">5. Konfirmasi dan pastikan membayar dengan Jumlah Total Harga yang benar</p>
+                <p style="text-align: left;">6. Tunggu sampai 1-15 Menit. Valorant Point akan masuk secepat kilat</p>
+                <p style="text-align: left;">(Mohon kesediannya menunggu, vp diproses secara manual maka disesuaikan dengan antrian)</p>
+            </div>
+            
+            <div class="col-md-8" style="padding-bottom: 2%;">
+                <div class="row background-data" style="font-family: 'sans-serif'; text-align: center; padding-bottom: 3%; color: black;">
+                    <h1 style="padding-bottom: 1%;">Masukan Data Anda</h1>
+                    <div class="col-md-6 center">
+                        <div class="input-group mb-3">
+                            <input type="text" id="nama" class="form-control" placeholder="Riot ID" aria-label="Username">
+                            <span class="input-group-text">@</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 center">
+                        <div class="input-group mb-3">
+                            <input type="text" id="uid" class="form-control" placeholder="Tagline" aria-label="Tagline">
+                            <span class="input-group-text">#</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 " style="color: black;padding-top: 2%;">
+                    <div class="row background-data">
+                        <h2>Pilihan Anda</h2>
+                        <div class="col-12 container2 ">
+                            <div class="row">
+                                <div class="col-md-3 border-pilihan"  id="z">
+                                    <label for="x">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>100 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 10.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="100 Valorant Point" id="x" width="75%">
+                                </div>
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x2">
+                                        <img src="images/VP3.png" width="75%">
+                                        <p>250 Valorant Point</p>
+                                        <p style="font-style: italic;">Rp. 22.000</p>
+                                    </label>
+                                    <input type="radio" name="price" value="250 Valorant Point" id="x2" width="75%">
+                                </div>
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x3">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>500 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 50.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="500 Valorant Point" id="x3" width="75%">
+                                </div>
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x4">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>780 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 75.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="780 Valorant Point" id="x4" width="75%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 container2">
+                            <div class="row">
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x5">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>1500 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 145.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="1500 Valorant Point" id="x5" width="75%">
+                                </div>
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x6">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>2100 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 200.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="2100 Valorant Point" id="x6" width="75%">
+                                </div>
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x7">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>2700 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 260.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="2700 Valorant Point" id="x7" width="75%">
+                                </div>
+                                <div class="col-md-3 border-pilihan" id="z">
+                                    <label for="x8">
+                                    <img src="images/VP3.png" width="75%">
+                                    <p>3500 Valorant Point</p>
+                                    <p style="font-style: italic;">Rp. 400.000</p>
+                                </label>
+                                    <input type="radio" name="price" value="3500 Valorant Point" id="x8" width="75%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12" style="padding-top: 2%;padding-bottom: 3%;">
+                    <div class="row background-data" style="padding-bottom: 2%;color: black;">
+                        <h2>Pembayaran</h2>
+                        <div class="col-md-6 center">
+                            <div class="row wkwk" id="r">
+                                <label for="y">
+                                <img src="images/BCAA.png" width="100%">
+                            </label>
+                                <input type="radio" name="payment" value="BCA" id="y" width="75%">
+                            </div>
+                        </div>
+                        <div class="col-md-6 center">
+                            <div class="row wkwk" id="r">
+                                <label for="y2">
+                                <img src="images/mandiri.png" width="100%">
+                            </label>
+                                <input type="radio" name="payment" value="Mandiri" id="y2" width="75%">
+                            </div>
+                        </div>
+                        <div class="col-md-6 center">
+                            <div class="row wkwk" id="r">
+                                <label for="y3">
+                                <img src="images/ovo.png" width="100%">
+                            </label>
+                                <input type="radio" name="payment" value="OVO" id="y3" width="75%">
+                            </div>
+                        </div>
+                        <div class="col-md-6 center">
+                            <div class="row wkwk" id="r">
+                                <label for="y4">
+                                <img src="images/sp.png" width="100%">
+                            </label>
+                                <input type="radio" name="payment" value="Shopeepay" id="y4" width="75%">
+                            </div>
+                        </div>
+                        <div class="col-md-6 center">
+                            <div class="row wkwk" id="r">
+                                <label for="y5">
+                                <img src="images/Gopay.png" width="100%">
+                            </label>
+                                <input type="radio" name="payment" value="Gopay" id="y5" width="75%">
+                            </div>
+                        </div>
+                        <div class="col-md-6 center">
+                            <div class="row wkwk" id="r">
+                                <label for="y6">
+                                <img src="images/dana.png" width="100%">
+                            </label>
+                                <input type="radio" name="payment" value="Dana" id="y6" width="75%">
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+
+                <div class="row background-data" style="font-family: 'sans-serif'; text-align: center; color: black;">
+                    <h1 style="padding-bottom: 1%;">Masukan Alamat Email Anda</h1>
+                    <div class="col-md-12 center">
+                        <div class="input-group mb-3">
+                            <input type="text" id="gmail" class="form-control" placeholder="Email" aria-label="Gmail">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <div class="center" style="padding-bottom: 1%;">
+                            <button class="btn btn-primary" type="submit" style="width: 100%;text-align: center;background-color: black;color: white;" onclick="save_valorant()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <script>
+                    // Get all the radio buttons for products
+                    const productRadioButtons = document.querySelectorAll('input[name="price"]');
+                  
+                    let selectedProductDiv = null; // Keep track of the selected product div
+                  
+                    // Add event listener to each product radio button
+                    productRadioButtons.forEach(function (radio) {
+                      radio.addEventListener('click', function () {
+                        // Get the parent div of the radio button
+                        const div = this.parentElement;
+                  
+                        // Restore the background color of the previously selected product div, if any
+                        if (selectedProductDiv !== null && selectedProductDiv !== div) {
+                          selectedProductDiv.style.backgroundColor = '#E8E8E8';
+                        }
+                  
+                        // Change the background color of the current product div
+                        if (this.checked) {
+                          selectedProductDiv = div; // Store the current product div as the selected div
+                          div.style.backgroundColor = 'rgb(139, 192, 253)'; // Change the color to your desired value
+                        }
+                      });
+                    });
+                  
+                    // Get all the radio buttons for products
+                    const paymentRadioButtons = document.querySelectorAll('input[name="payment"]');
+                  
+                    let selectedProductDiv2 = null; // Keep track of the selected product div
+                  
+                    // Add event listener to each product radio button
+                    paymentRadioButtons.forEach(function (radio) {
+                      radio.addEventListener('click', function () {
+                        // Get the parent div of the radio button
+                        const div = this.parentElement;
+                  
+                        // Restore the background color of the previously selected product div, if any
+                        if (selectedProductDiv2 !== null && selectedProductDiv2 !== div) {
+                          selectedProductDiv2.style.backgroundColor = '#E8E8E8';
+                        }
+                  
+                        // Change the background color of the current product div
+                        if (this.checked) {
+                          selectedProductDiv2 = div; // Store the current product div as the selected div
+                          div.style.backgroundColor = 'rgb(139, 192, 253)'; // Change the color to your desired value
+                        }
+                      });
+                    });
+                  </script>
+            </div>
+        </form>
+
+        <script>
+            var databaseRef = firebase.database().ref('valorant/');
+            function save_valorant(){
+                var riotId = document.getElementById('nama').value;
+                var tagline = document.getElementById('uid').value;
+                var email = document.getElementById('gmail').value;
+                var selectedProduct = document.querySelector('input[name="price"]:checked').value;
+                var selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+
+            
+            var uid = firebase.database().ref().child('valorant').push().key;
+            
+            var data = {
+                riotId: riotId,
+                tagline: tagline,
+                email: email,
+                selectedProduct: selectedProduct,
+                selectedPayment: selectedPayment
+            }
+            
+            var updates = {};
+            updates['/valorant/' + uid] = data;
+            firebase.database().ref().update(updates);
+
+            alert('successfully!');
+            reload_page();
+            }
+            function reload_page(){
+            window.location.reload();
+            }
+            
+            
+            </script>
+    </div>
+    <footer>
+        <div class="col-12 contact">
+          <div class="row" style="font-family: sans-serif;">
+              <div class="col-md-6" style="text-align: center;">
+                <img src="images/logo.png" alt="Slide 3">
+                <h4 style="font-weight: bold;color: whitesmoke;font-family: 'Roboto', sans-serif;padding-top: 1%;">JAMALGAMING</h4>
+              </div>
+              <div class="col-md-6" style="text-align: center;">
+                <h4 style="font-family: 'Roboto', sans-serif;color: whitesmoke;">SOSIAL MEDIA</h4>
+                <a href="https://instagram.com/riyanatsill" target="_blank" rel="noopener noreferrer"><img src="images/ig.png" alt=""></a>
+                <a href="http://" target="_blank" rel="noopener noreferrer"><img src="images/WA2.png" alt=""></a>
+                <a href="http://" target="_blank" rel="noopener noreferrer"><img src="images/twitter.png" alt=""></a>
+              </div>
+              <div class="col-12" id="copyright" style="text-align: center;color: aliceblue;font-family: sans-serif;padding-top: 2%;">
+                &copy;2023 JAMALGAMING. All Rights Reserved
+            </div>
+          </div>
+      </div>
+    </footer>
+</body>
+<script src="js/js.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+</html>

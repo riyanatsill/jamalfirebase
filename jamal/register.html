@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="`en`">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+    <link rel="icon" type="image" sizes="32x32"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sign-in.css" rel="stylesheet">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyA9aTlgYyrwuhr0NujpAkG2BBvUfPiqrOk",
+    		  authDomain: "cobaan-9d92e.firebaseapp.com",
+    		  databaseURL: "https://cobaan-9d92e-default-rtdb.firebaseio.com/",
+    		  projectId: "cobaan-9d92e",
+    		  storageBucket: "cobaan-9d92e.appspot.com",
+    		  messagingSenderId: "772584044256",
+    		  appId: "1:772584044256:web:9d0fbd087407d43cd18285",
+    		  measurementId: "G-PHCR39EQCV"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+   </script>
+</head>
+<body class="text-center" style="background-color: #62B6B7">
+<main class="form-signin w-100 m-auto">
+    <form>
+        <h1 class="h3 mb-3 fw-normal">Register</h1>
+
+        <div class="form-floating">
+            <input type="email" class="form-control" name="email" id="floatingInput" placeholder="www@gmail.com">
+            <label for="floatingInput">Email</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="text" class="form-control" name="username" id="floatingInput2" placeholder="username">
+            <label for="floatingInput2">Username</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit" onclick="save_valorant()">Sign Up</button>
+        <p>Sudah Punya Akun? <a href="login.html">Login</a></p>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022 JAMALGAMING</p>
+    </form>
+</main>
+
+<script>
+    var databaseRef = firebase.database().ref('User/');
+    function save_valorant(){
+        var email = document.getElementById('floatingInput').value;
+        var username = document.getElementById('floatingInput2').value;
+        var pass = document.getElementById('floatingPassword').value;
+console.log(pass)
+    
+    var uid = firebase.database().ref().child('User').push().key;
+    
+    var data = {
+        email: email,
+        username: username,
+        pass: pass
+    }
+    
+    var updates = {};
+    updates['/User/' + uid] = data;
+    firebase.database().ref().update(updates);
+
+    alert('successfully!');
+    reload_page();
+    }
+    function reload_page(){
+    window.location.reload();
+    }
+    </script>
+
+</body>
+</html>
