@@ -32,10 +32,11 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
    </script>
+
 </head>
 <body class="text-center" style="background-color: #62B6B7">
 <main class="form-signin w-100 m-auto">
-    <form>
+    <form method="post" id="registerForm">
         <h1 class="h3 mb-3 fw-normal">Register</h1>
 
         <div class="form-floating">
@@ -52,39 +53,45 @@
             <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="password">
             <label for="floatingPassword">Password</label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit" onclick="save_valorant()">Sign Up</button>
+        <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit" >Sign Up</button>
         <p>Sudah Punya Akun? <a href="login.html">Login</a></p>
         <p class="mt-5 mb-3 text-muted">&copy; 2022 JAMALGAMING</p>
     </form>
 </main>
 
+
 <script>
     var databaseRef = firebase.database().ref('User/');
-    function save_valorant(){
-        var email = document.getElementById('floatingInput').value;
-        var username = document.getElementById('floatingInput2').value;
-        var pass = document.getElementById('floatingPassword').value;
-console.log(pass)
-    
+    let fix = "false";
+
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Call the save_valorant() function
+            save_valorant();
+
+            // Redirect to the next page
+            location.assign("login.html");
+        });
+
+    function save_valorant() {
+    var email = document.getElementById('floatingInput').value;
+    var username = document.getElementById('floatingInput2').value;
+    var pass = document.getElementById('floatingPassword').value;
+
     var uid = firebase.database().ref().child('User').push().key;
-    
+
     var data = {
         email: email,
         username: username,
         pass: pass
-    }
-    
-    var updates = {};
-    updates['/User/' + uid] = data;
-    firebase.database().ref().update(updates);
+  }
 
-    alert('successfully!');
-    reload_page();
-    }
-    function reload_page(){
-    window.location.reload();
-    }
+  var updates = {};
+  updates['/User/' + uid] = data;
+  firebase.database().ref().update(updates);
+}
     </script>
-
+    
 </body>
 </html>

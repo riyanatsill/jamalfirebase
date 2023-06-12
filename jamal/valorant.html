@@ -39,7 +39,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" style="color: white;padding-left: 10%; font-family: Rockwell;" href="home.html">
                 <img src="images/logo2.png" alt="Bootstrap" width="35" height="35">
-                JamalGaming
+                Game of Life
             </a>
           <button class="navbar-toggler bg-light" style="background-color: #376E6F;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" ></span>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="col-12 container">
-        <form class="row" style="font-family: 'sans-serif'; text-align: center;color: black;padding-top: 2%;">
+        <form class="row" id="registerForm" style="font-family: 'sans-serif'; text-align: center;color: black;padding-top: 2%;">
             <div class="col-md-4">
                 <img src="images/valorant.jpg" alt="Slide 3 " style="width:50%;">
                 <h5 style="font-weight: bold;">CARA MEMBELI VALORANT POINT</h5>
@@ -82,13 +82,13 @@
                     <h1 style="padding-bottom: 1%;">Masukan Data Anda</h1>
                     <div class="col-md-6 center">
                         <div class="input-group mb-3">
-                            <input type="text" id="nama" class="form-control" placeholder="Riot ID" aria-label="Username">
+                            <input type="text" value="" id="nama" class="form-control" placeholder="Riot ID" aria-label="Username">
                             <span class="input-group-text">@</span>
                         </div>
                     </div>
                     <div class="col-md-6 center">
                         <div class="input-group mb-3">
-                            <input type="text" id="uid" class="form-control" placeholder="Tagline" aria-label="Tagline">
+                            <input type="text" value="" id="uid" class="form-control" placeholder="Tagline" aria-label="Tagline">
                             <span class="input-group-text">#</span>
                         </div>
                     </div>
@@ -231,11 +231,14 @@
                     <h1 style="padding-bottom: 1%;">Masukan Alamat Email Anda</h1>
                     <div class="col-md-12 center">
                         <div class="input-group mb-3">
-                            <input type="text" id="gmail" class="form-control" placeholder="Email" aria-label="Gmail">
+                            <input type="text" value="" id="gmail" class="form-control" placeholder="Email" aria-label="Gmail">
                             <span class="input-group-text">@</span>
                         </div>
+                        <div class="input-group mb-3">
+                        <input type="hidden" class="form-control form-control-user" id="game" value="Valorant">
+                        </div>
                         <div class="center" style="padding-bottom: 1%;">
-                            <button class="btn btn-primary" type="submit" style="width: 100%;text-align: center;background-color: black;color: white;" onclick="save_valorant()">Submit</button>
+                            <button class="btn btn-primary" type="submit" style="width: 100%;text-align: center;background-color: black;color: white;">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -293,38 +296,77 @@
         </form>
 
         <script>
-            var databaseRef = firebase.database().ref('valorant/');
-            function save_valorant(){
-                var riotId = document.getElementById('nama').value;
+		    var databaseRef = firebase.database().ref('Transaction/');
+		    let fix = "false";
+		
+		    document.getElementById('registerForm').addEventListener('submit', function(event) {
+		            event.preventDefault(); // Prevent form submission
+                    const riotId = document.getElementById('nama').value.trim();
+                    const tagline = document.getElementById('uid').value.trim();
+                    const email = document.getElementById('gmail').value.trim();
+
+                    // Retrieve selected radio button values
+                    const selectedPrice = document.querySelector('input[name="price"]:checked');
+                    const selectedPayment = document.querySelector('input[name="payment"]:checked');
+
+                    if (riotId === '' || tagline === '' || email === '' || !selectedPrice || !selectedPayment) {
+                        // If any of the required fields or radio buttons are empty, display an error message
+                        alert('Please fill in all the required fields and make a selection for both price and payment.');
+                    } else {
+                        // Call the save_valorant() function
+                        save_valorant();
+
+                        // Redirect to the next page
+                        alert('Successfully');
+                        location.assign("success.html");
+                        console.log('Data stored to Firebase:', riotId, tagline, email);
+                        console.log('Selected Price:', selectedPrice.value);
+                        console.log('Selected Payment:', selectedPayment.value);
+                    }
+		            
+		        });
+		
+		    function save_valorant(){
+                var Id = document.getElementById('nama').value;
                 var tagline = document.getElementById('uid').value;
                 var email = document.getElementById('gmail').value;
+                var game = document.getElementById('game').value;
                 var selectedProduct = document.querySelector('input[name="price"]:checked').value;
                 var selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+                var username = sessionStorage.getItem('username');
 
             
-            var uid = firebase.database().ref().child('valorant').push().key;
+            if (username) {
+            var uid = firebase.database().ref().child('Transaction').push().key;
             
             var data = {
-                riotId: riotId,
+                Id: Id,
                 tagline: tagline,
+                game: game,
                 email: email,
                 selectedProduct: selectedProduct,
+                username: username,
                 selectedPayment: selectedPayment
             }
-            
-            var updates = {};
-            updates['/valorant/' + uid] = data;
-            firebase.database().ref().update(updates);
 
-            alert('successfully!');
-            reload_page();
+            var updates = {};
+            updates['/Transaction/' + uid] = data;
+            firebase.database().ref().update(updates);
+            console.log('Data stored to Firebase:', data);
+            }else {
+            console.log('User session not found. Please login first.');
             }
-            function reload_page(){
-            window.location.reload();
-            }
-            
-            
-            </script>
+        }
+
+        // Check if the user is logged in when the page loads
+      window.addEventListener('load', function() {
+        var isLoggedIn = sessionStorage.getItem('isLoggedIn');
+        if (isLoggedIn !== 'true') {
+          // Redirect to the login page if not logged in
+          location.assign("login.html");
+        }
+      });
+        </script>
     </div>
     <footer>
         <div class="col-12 contact">

@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" style="color: white;padding-left: 10%; font-family: Rockwell;" href="home.html">
                 <img src="images/logo2.png" alt="Bootstrap" width="35" height="35">
-                JamalGaming
+                Game of Life
             </a>
           <button class="navbar-toggler bg-light" style="background-color: #376E6F;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon" ></span>
@@ -24,10 +24,10 @@
           <div class="collapse navbar-collapse" style="padding-right: 5%;" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item" style="color: white;">
-                <a class="nav-link" href="home.html" style="font-family: 'Roboto', sans-serif;">Home</a>
+                <a class="nav-link" href="home.html" style="font-family: sans-serif;">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="font-family: 'Roboto', sans-serif;">Price List</a>
+                <a class="nav-link" href="pricelist.html" style="font-family: sans-serif;">Price List</a>
               </li>
             </ul>
           </div>
@@ -232,6 +232,16 @@
         </div>
     </div>
 </div>
+<script>
+    // Check if the user is logged in when the page loads
+    window.addEventListener('load', function() {
+        var isLoggedIn = sessionStorage.getItem('isLoggedIn');
+        if (isLoggedIn !== 'true') {
+          // Redirect to the login page if not logged in
+          location.assign("login.html");
+        }
+      });
+</script>
 <footer>
     <div class="col-12 contact">
       <div class="row" style="font-family: sans-serif;">

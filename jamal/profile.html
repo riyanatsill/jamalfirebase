@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <link rel="icon" type="image" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sign-in.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyA9aTlgYyrwuhr0NujpAkG2BBvUfPiqrOk",
+    		  authDomain: "cobaan-9d92e.firebaseapp.com",
+    		  databaseURL: "https://cobaan-9d92e-default-rtdb.firebaseio.com/",
+    		  projectId: "cobaan-9d92e",
+    		  storageBucket: "cobaan-9d92e.appspot.com",
+    		  messagingSenderId: "772584044256",
+    		  appId: "1:772584044256:web:9d0fbd087407d43cd18285",
+    		  measurementId: "G-PHCR39EQCV"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+   </script>
+</head>
+<body>
+    <nav class="navbar fixed-top bg-dark navbar-expand-lg" style=" padding: 1%;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;" >
+        <div class="container-fluid">
+            <a class="navbar-brand" style="color: white;padding-left: 10%; font-family: Rockwell;" href="home.html">
+                <img src="images/logo2.png" alt="Bootstrap" width="35" height="35">
+                Game of Life
+            </a>
+          <button class="navbar-toggler bg-light" style="background-color: #376E6F;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" ></span>
+          </button>
+          <div class="collapse navbar-collapse" style="padding-right: 5%;" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item" style="color: white;">
+                <a class="nav-link" href="home.html" style="font-family: sans-serif;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pricelist.html" style="font-family: sans-serif;">Price List</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+<main class="form-signin w-100 m-auto">
+    <form id="password-update-form">
+        <h1 class="h3 mb-3 fw-normal" style="text-align: center;">PROFILE</h1>
+
+        <div class="form-floating" >
+            <input type="text" name="username" class="form-control" id="username" placeholder="Username" readonly>
+            <label for="username">Username</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email" readonly>
+            <label for="username">Email</label>
+        </div>
+        <br>
+        <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="newPasswordInput" placeholder="password">
+            <label for="newPasswordInput">Password</label>
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit">Update</button>
+    </form>
+</main>
+<script>
+    // Get a reference to the password update form
+    var passwordUpdateForm = document.getElementById('password-update-form');
+    
+    // Attach an event listener to the form submission
+    passwordUpdateForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from being submitted
+    
+      // Get the new password value from the input field
+      var newPassword = document.getElementById('newPasswordInput').value;
+    
+      // Get the user's email and username from session storage
+      var userEmail = sessionStorage.getItem('email');
+      var userUsername = sessionStorage.getItem('username');
+    
+      firebase
+      .database()
+      .ref('User/')
+      .orderByChild('username')
+      .equalTo(userUsername)
+      .once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var userId = childSnapshot.key;
+
+          // Update the user's password in the Firebase Realtime Database
+          firebase
+            .database()
+            .ref('User/' + userId)
+            .update({
+              pass: newPassword
+            })
+            .then(function() {
+              // Password update successful
+              console.log('Password updated successfully');
+              location.assign('home.html');
+              // You can show a success message to the user or perform any other actions here
+            })
+            .catch(function(error) {
+              // Handle any errors that occur during the password update
+              console.error('Error updating password:', error);
+              // You can show an error message to the user or perform any other error handling here
+            });
+        });
+      });
+  });
+    
+    // Retrieve user's email and username from session storage
+    var userEmail = sessionStorage.getItem('email');
+    var userUsername = sessionStorage.getItem('username');
+    if (userEmail && userUsername) {
+      // Populate the email and username input fields
+      document.getElementById('floatingInput').setAttribute('value', userEmail);
+      document.getElementById('username').setAttribute('value', userUsername);
+    } else {
+      // Session data not available
+      console.log('Session data not available');
+    }
+    </script>
+</body>
+</html>

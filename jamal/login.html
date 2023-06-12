@@ -7,16 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image" sizes="32x32" href="images/favicon-32x32.png"/>
     <link href="css/sign-in.css" rel="stylesheet">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyA9aTlgYyrwuhr0NujpAkG2BBvUfPiqrOk",
+    		  authDomain: "cobaan-9d92e.firebaseapp.com",
+    		  databaseURL: "https://cobaan-9d92e-default-rtdb.firebaseio.com/",
+    		  projectId: "cobaan-9d92e",
+    		  storageBucket: "cobaan-9d92e.appspot.com",
+    		  messagingSenderId: "772584044256",
+    		  appId: "1:772584044256:web:9d0fbd087407d43cd18285",
+    		  measurementId: "G-PHCR39EQCV"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+   </script>
 </head>
 
 <body class="text-center" style="background-color: #62B6B7">
 <main class="form-signin w-100 m-auto">
-    <form>
-        <h1 class="h3 mb-3 fw-normal">Login</h1>
-
-        <div class="form-floating">
+    <form id="loginForm">
+      <img class="mb-4" src="images/logoG2.png" alt="" width="50%" style="border-radius: 20px;padding-bottom: 4%;">
+        <div class="form-floating" >
             <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
             <label for="floatingInput">Username</label>
         </div>
@@ -31,5 +52,47 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2022 JAMALGAMING</p>
     </form>
 </main>
+
+<script>
+    var databaseRef = firebase.database().ref('User/');
+  
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+  
+      var username = document.querySelector('input[name="username"]').value;
+      var password = document.querySelector('input[name="password"]').value;
+  
+      databaseRef.orderByChild('username').equalTo(username).once('value', function(snapshot) {
+        var found = false;
+        snapshot.forEach(function(childSnapshot) {
+          var data = childSnapshot.val();
+          if (data.pass === password) {
+            // Successful login
+            found = true;
+            console.log('Login successful');
+
+            // Retrieve the user's email from Firebase
+            var email = data.email;
+
+            // Create a session using sessionStorage
+          sessionStorage.setItem('username', username);
+          sessionStorage.setItem('email', email);
+          sessionStorage.setItem('isLoggedIn', 'true');
+          alert('Login successfully!');
+            // Redirect to the next page
+            location.assign("home.html");
+          }
+        });
+  
+        if (!found) {
+          // Incorrect email or password
+          console.log('Incorrect email or password');
+          // Display an error message to the user
+        }
+      });
+    });
+  </script>
+  
+        
 </body>
 </html>
