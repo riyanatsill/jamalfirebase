@@ -9,6 +9,7 @@
     <link rel="icon" type="image" sizes="32x32"/>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sign-in.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
@@ -37,7 +38,8 @@
 <body class="text-center" style="background-color: #62B6B7">
 <main class="form-signin w-100 m-auto">
     <form method="post" id="registerForm">
-        <h1 class="h3 mb-3 fw-normal">Register</h1>
+        <img class="mb-4" src="images/logoG2.png" alt="" width="50%" style="border-radius: 20px;padding-bottom: 2%;">
+        <h1 class="h3 mb-3 fw-normal" style="color: whitesmoke;">Register</h1>
 
         <div class="form-floating">
             <input type="email" class="form-control" name="email" id="floatingInput" placeholder="www@gmail.com">
@@ -54,8 +56,8 @@
             <label for="floatingPassword">Password</label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit" >Sign Up</button>
-        <p>Sudah Punya Akun? <a href="login.html">Login</a></p>
-        <p class="mt-5 mb-3 text-muted">&copy; 2022 JAMALGAMING</p>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+        <p class="mt-5 mb-3 text-muted">&copy;2023 GAMEOFLIFE</p>
     </form>
 </main>
 
@@ -69,7 +71,7 @@
 
             // Call the save_valorant() function
             save_valorant();
-
+            alert('Register successfully!');
             // Redirect to the next page
             location.assign("login.html");
         });
