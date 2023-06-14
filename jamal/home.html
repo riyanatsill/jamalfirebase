@@ -90,13 +90,13 @@
         <div class="row ">
             <div class="col-md-6" style="padding-top: 5%; text-align: center;">
                 <a href="valorant.html">
-                    <img src="images/valorant.jpg" alt="Slide 3" style="width:50%; border-radius: 10px;box-shadow: 20px 20px rgba(0, 0, 0, 0.19);">
+                    <img src="images/valorant.jpg" alt="Slide 3" style="width:50%; border-radius: 10px;box-shadow: 20px 20px #778899;">
                 </a>
                 <div class="judul-produk">Valorant</div>
             </div>
             <div class="col-md-6" style="padding-top: 5%; text-align: center;">
                 <a href="pubgm.html">
-                    <img src="images/pubgm.jpg" alt="Slide 3 " style="width:50%;border-radius: 10px;box-shadow: 20px 20px rgba(0, 0, 0, 0.19);">
+                    <img src="images/pubgm.jpg" alt="Slide 3 " style="width:50%;border-radius: 10px;box-shadow: 20px 20px #778899;">
                 </a>
                 <div class="judul-produk">Pubg Mobile</div>
             </div>
@@ -106,13 +106,13 @@
         <div class="row ">
             <div class="col-md-6" style="padding-top: 2%; text-align: center;">
                 <a href="ml.html">
-                    <img src="images/mlbb.jpg" alt="Slide 3" style="width:50%;border-radius: 10px;box-shadow: 20px 20px rgba(0, 0, 0, 0.19);">
+                    <img src="images/mlbb.jpg" alt="Slide 3" style="width:50%;border-radius: 10px;box-shadow: 20px 20px #778899;">
                 </a>
                 <div class="judul-produk">Mobile Legend</div>
             </div>
             <div class="col-md-6" style="padding-top: 2%; text-align: center;">
                 <a href="genshin.html">
-                    <img src="images/GenshinImpact.jpg" alt="Slide 3 " style="width:50%; border-radius: 10px;box-shadow: 20px 20px rgba(0, 0, 0, 0.19);">
+                    <img src="images/GenshinImpact.jpg" alt="Slide 3 " style="width:50%; border-radius: 10px;box-shadow: 20px 20px #778899;">
                 </a>
                 <div class="judul-produk">Genshin Impact</div>
             </div>
@@ -151,25 +151,7 @@
     </footer>
     
 
-    <script>
-      // Logout functionality
-      function logout() {
-        // Clear the session storage
-        sessionStorage.clear();
-        alert('Logout successfully!');
-        // Redirect to the login page
-        location.assign("login.html");
-      }
-    
-      // Check if the user is logged in when the page loads
-      window.addEventListener('load', function() {
-        var isLoggedIn = sessionStorage.getItem('isLoggedIn');
-        if (isLoggedIn !== 'true') {
-          // Redirect to the login page if not logged in
-          location.assign("login.html");
-        }
-      });
-    </script>
+    <script src="js/home.js"> </script>
     
 </body>
 <script src="js/bootstrap.bundle.min.js"></script>

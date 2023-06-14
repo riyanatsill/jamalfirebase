@@ -16,22 +16,7 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
-    <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyA9aTlgYyrwuhr0NujpAkG2BBvUfPiqrOk",
-    		  authDomain: "cobaan-9d92e.firebaseapp.com",
-    		  databaseURL: "https://cobaan-9d92e-default-rtdb.firebaseio.com/",
-    		  projectId: "cobaan-9d92e",
-    		  storageBucket: "cobaan-9d92e.appspot.com",
-    		  messagingSenderId: "772584044256",
-    		  appId: "1:772584044256:web:9d0fbd087407d43cd18285",
-    		  measurementId: "G-PHCR39EQCV"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-   </script>
+    <script src="js/config.js"> </script>
 </head>
 
 <body style="background-color: whitesmoke">
@@ -59,94 +44,16 @@
             <tr>
             <td hidden></td>
             <td width="20%" style="font-weight: bold;">Game</td>
-            <td width="20%">ID</td>
-            <td width="20%">Product</td>
-            <td width="20%">Payment</td>
-            <td width="10%"></td>
+            <td width="20%" style="font-weight: bold;">ID</td>
+            <td width="20%" style="font-weight: bold;">Product</td>
+            <td width="20%" style="font-weight: bold;">Payment</td>
+            <td width="10%" style="font-weight: bold;"></td>
             </tr>
             </table>
         </div>
       </div>
     </div>
-    <script>
-      function check_login(){
-        var isLoggedIn = sessionStorage.getItem('isLoggedIn');
-  if (isLoggedIn === 'true') {
-    var username = sessionStorage.getItem('username');
-    return username;
-  }
-  return null;
-    }
-
-  var username = check_login(); // Replace getSessionUsername() with your function to retrieve the username from the session
-  
-  if (username) {
-    var tbHistory = document.getElementById('tb_history');
-    var databaseRef = firebase.database().ref('Transaction/');
-    var rowIndex = 1;
-    
-    databaseRef.once('value', function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-        var childKey = childSnapshot.key;
-        var childData = childSnapshot.val();
-        
-        // Check if the current transaction belongs to the logged-in user
-        if (childData.username === username) {
-          var row = tbHistory.insertRow(rowIndex);
-          var uid = row.insertCell(0);
-          var cellGame = row.insertCell(1);
-          var cellId = row.insertCell(2);
-          var cellProduct = row.insertCell(3);
-          var cellPayment = row.insertCell(4);
-
-          uid.classList.add("hidden");
-          uid.appendChild(document.createTextNode(childKey));
-          cellGame.appendChild(document.createTextNode(childData.game));
-          cellId.appendChild(document.createTextNode(childData.Id));
-          cellProduct.appendChild(document.createTextNode(childData.selectedProduct));
-          cellPayment.appendChild(document.createTextNode(childData.selectedPayment));
-          
-        // Create a delete button element
-        var deleteButton = document.createElement("button");
-          deleteButton.innerHTML = "Delete";
-
-          // Assign a click event handler to the delete button
-          deleteButton.addEventListener("click", function() {
-            deleteTransaction(childKey); // Call a function to delete the transaction with the given childKey
-          });
-
-          // Append the delete button to the row as the last cell
-          var deleteCell = row.insertCell(5);
-          deleteCell.appendChild(deleteButton);
-
-          rowIndex = rowIndex + 1;
-        }
-      });
-    });
-  } else {
-    // Handle the case when the user is not logged in or authenticated
-  }
-// Check if the user is logged in when the page loads
-window.addEventListener('load', function() {
-        var isLoggedIn = sessionStorage.getItem('isLoggedIn');
-        if (isLoggedIn !== 'true') {
-          // Redirect to the login page if not logged in
-          location.assign("login.html");
-        }
-      });
-
-      function deleteTransaction(childKey) {
-    // Replace '/Transaction/' with the appropriate reference to your Firebase transaction node
-    firebase.database().ref('Transaction/' + childKey).remove()
-      .then(function() {
-        alert('Transaction deleted successfully!');
-        location.reload(); // Reload the page after deletion
-      })
-      .catch(function(error) {
-        console.log('Transaction deletion failed: ' + error.message);
-      });
-  }
-</script>
+    <script src="js/history.js"></script>
 <footer>
   <div class="col-12 contact">
     <div class="row" style="font-family: sans-serif;">
@@ -167,5 +74,5 @@ window.addEventListener('load', function() {
 </div>
 </footer>  
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 </html>
