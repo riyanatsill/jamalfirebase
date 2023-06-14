@@ -53,6 +53,7 @@ const productRadioButtons = document.querySelectorAll('input[name="price"]');
                             event.preventDefault(); // Prevent form submission
                             const Id = document.getElementById('uid').value.trim();
                             const email = document.getElementById('gmail').value.trim();
+                            var spayment = document.querySelector('input[name="payment"]').value;
         
                             // Retrieve selected radio button values
                             const selectedPrice = document.querySelector('input[name="price"]:checked');
@@ -67,10 +68,7 @@ const productRadioButtons = document.querySelectorAll('input[name="price"]');
         
                                 // Redirect to the next page
                                 alert('Successfully');
-                                location.assign("success.html");
-                                console.log('Data stored to Firebase:', riotId, tagline, email);
-                                console.log('Selected Price:', selectedPrice.value);
-                                console.log('Selected Payment:', selectedPayment.value);
+                                location.assign(spayment + ".html");
                             }
                         });
                 
@@ -84,21 +82,11 @@ const productRadioButtons = document.querySelectorAll('input[name="price"]');
         
                     
                         if (username) {
-                    var uid = firebase.database().ref().child('Transaction').push().key;
-                    
-                    var data = {
-                        Id: Id,
-                        game: game,
-                        email: email,
-                        selectedProduct: selectedProduct,
-                        selectedPayment: selectedPayment,
-                        username: username
-                    }
-        
-                    var updates = {};
-                    updates['/Transaction/' + uid] = data;
-                    firebase.database().ref().update(updates);
-                    console.log('Data stored to Firebase:', data);
+                          sessionStorage.setItem('Id', Id);
+                          sessionStorage.setItem('game', game);
+                          sessionStorage.setItem('email', email);
+                          sessionStorage.setItem('price', selectedProduct);
+                          sessionStorage.setItem('payment', selectedPayment);
                     }else {
                     console.log('User session not found. Please login first.');
                     }

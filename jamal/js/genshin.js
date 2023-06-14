@@ -74,7 +74,7 @@ var databaseRef = firebase.database().ref('Transaction/');
 		        });
 		
 		    function save_genshin(){
-                var genshinId = document.getElementById('uid').value;
+                var Id = document.getElementById('uid').value;
                 var server = document.getElementById('nama').value;
                 var email = document.getElementById('gmail').value;
                 var game = document.getElementById('game').value;
@@ -83,21 +83,17 @@ var databaseRef = firebase.database().ref('Transaction/');
                 var username = sessionStorage.getItem('username');
 
             
-            var uid = firebase.database().ref().child('Transaction').push().key;
-            
-            var data = {
-                genshinId: genshinId,
-                server: server,
-                game: game,
-                email: email,
-                selectedProduct: selectedProduct,
-                selectedPayment: selectedPayment,
-                username: username
-            }
-            
-            var updates = {};
-            updates['/Transaction/' + uid] = data;
-            firebase.database().ref().update(updates);
+                if (username) {
+
+                  sessionStorage.setItem('Id', Id);
+                  sessionStorage.setItem('server', server);
+                  sessionStorage.setItem('game', game);
+                  sessionStorage.setItem('email', email);
+                  sessionStorage.setItem('price', selectedProduct);
+                  sessionStorage.setItem('payment', selectedPayment);
+                  }else {
+                  console.log('User session not found. Please login first.');
+                  }
             }
 
             // Check if the user is logged in when the page loads

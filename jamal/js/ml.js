@@ -59,6 +59,7 @@ var databaseRef = firebase.database().ref('Transaction/');
                     // Retrieve selected radio button values
                     const selectedPrice = document.querySelector('input[name="price"]:checked');
                     const selectedPayment = document.querySelector('input[name="payment"]:checked');
+                    var spayment = document.querySelector('input[name="payment"]').value;
 
                     if (Id === '' || zone === '' || email === '' || !selectedPrice || !selectedPayment) {
                         // If any of the required fields or radio buttons are empty, display an error message
@@ -69,7 +70,7 @@ var databaseRef = firebase.database().ref('Transaction/');
 
                         // Redirect to the next page
                         alert('Successfully');
-                        location.assign("success.html");
+                        location.assign(spayment + ".html");
                     }
 		        });
 		
@@ -84,25 +85,16 @@ var databaseRef = firebase.database().ref('Transaction/');
 
             
                 if (username) {
-            var uid = firebase.database().ref().child('Transaction').push().key;
-            
-            var data = {
-                Id: Id,
-                zone: zone,
-                game: game,
-                email: email,
-                selectedProduct: selectedProduct,
-                selectedPayment: selectedPayment,
-                username: username
-            }
 
-            var updates = {};
-            updates['/Transaction/' + uid] = data;
-            firebase.database().ref().update(updates);
-            console.log('Data stored to Firebase:', data);
-            }else {
-            console.log('User session not found. Please login first.');
-            }
+                  sessionStorage.setItem('Id', Id);
+                  sessionStorage.setItem('zone', zone);
+                  sessionStorage.setItem('game', game);
+                  sessionStorage.setItem('email', email);
+                  sessionStorage.setItem('price', selectedProduct);
+                  sessionStorage.setItem('payment', selectedPayment);
+                  }else {
+                  console.log('User session not found. Please login first.');
+                  }
         }
 
         // Check if the user is logged in when the page loads
