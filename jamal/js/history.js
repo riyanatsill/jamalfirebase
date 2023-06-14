@@ -32,8 +32,8 @@ databaseRef.once('value', function(snapshot) {
       uid.appendChild(document.createTextNode(childKey));
       cellGame.appendChild(document.createTextNode(childData.game));
       cellId.appendChild(document.createTextNode(childData.Id));
-      cellProduct.appendChild(document.createTextNode(childData.selectedProduct));
-      cellPayment.appendChild(document.createTextNode(childData.selectedPayment));
+      cellProduct.appendChild(document.createTextNode(childData.product));
+      cellPayment.appendChild(document.createTextNode(childData.payment));
       
     // Create a delete button element
     var deleteButton = document.createElement("button");

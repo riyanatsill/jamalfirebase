@@ -59,9 +59,8 @@ var databaseRef = firebase.database().ref('Transaction/');
                     // Retrieve selected radio button values
                     const selectedPrice = document.querySelector('input[name="price"]:checked');
                     const selectedPayment = document.querySelector('input[name="payment"]:checked');
-                    var spayment = document.querySelector('input[name="payment"]').value;
 
-                    if (Id === '' || zone === '' || email === '' || !selectedPrice || !selectedPayment) {
+                    if (Id === '' || Id < 0 || zone === '' || email === '' || !selectedPrice || !selectedPayment) {
                         // If any of the required fields or radio buttons are empty, display an error message
                         alert('Please fill in all the required fields and make a selection for both price and payment.');
                     } else {
@@ -70,7 +69,7 @@ var databaseRef = firebase.database().ref('Transaction/');
 
                         // Redirect to the next page
                         alert('Successfully');
-                        location.assign(spayment + ".html");
+                        location.assign("details.html");
                     }
 		        });
 		
@@ -90,7 +89,7 @@ var databaseRef = firebase.database().ref('Transaction/');
                   sessionStorage.setItem('zone', zone);
                   sessionStorage.setItem('game', game);
                   sessionStorage.setItem('email', email);
-                  sessionStorage.setItem('price', selectedProduct);
+                  sessionStorage.setItem('product', selectedProduct);
                   sessionStorage.setItem('payment', selectedPayment);
                   }else {
                   console.log('User session not found. Please login first.');

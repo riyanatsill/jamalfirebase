@@ -1,12 +1,12 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyA9aTlgYyrwuhr0NujpAkG2BBvUfPiqrOk",
-    authDomain: "cobaan-9d92e.firebaseapp.com",
-    databaseURL: "https://cobaan-9d92e-default-rtdb.firebaseio.com/",
-    projectId: "cobaan-9d92e",
-    storageBucket: "cobaan-9d92e.appspot.com",
-    messagingSenderId: "772584044256",
-    appId: "1:772584044256:web:9d0fbd087407d43cd18285",
-    measurementId: "G-PHCR39EQCV"
+  apiKey: "AIzaSyD7xyridKRt4Mzi8W5o5rb5XKF7xHYynwI",
+  authDomain: "gameoflife-6c5f6.firebaseapp.com",
+  databaseURL: "https://gameoflife-6c5f6-default-rtdb.firebaseio.com",
+  projectId: "gameoflife-6c5f6",
+  storageBucket: "gameoflife-6c5f6.appspot.com",
+  messagingSenderId: "640089926592",
+  appId: "1:640089926592:web:30d32a0f3c1fe7ca293625",
+  measurementId: "G-MRKFNMPFHC"
     };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

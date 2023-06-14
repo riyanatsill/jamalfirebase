@@ -5,46 +5,63 @@ window.addEventListener('load', function() {
         location.assign("login.html");
     } else {
         var game = sessionStorage.getItem("game");
+        var product = sessionStorage.getItem('product');
+        var databaseRef = firebase.database().ref('Product');
+        databaseRef.orderByChild('product').equalTo(product).once('value', function(snapshot) {
+            var found = false;
+            snapshot.forEach(function(childSnapshot) {
+              var data = childSnapshot.val();
+              console.log(data.product);
+              if(data.product === product){
+                var getPrice = data.price;
+                found = true;
+                switch (game) {
+                    case "Valorant":
+                        save_valorant(getPrice);
+                        break;
+                    case "PUBG Mobile":
+                        save_pubgm(getPrice);
+                        break;
+                    case "Genshin Impact":
+                        save_genshin(getPrice);
+                        break;
+                    case "Mobile Legend":
+                        save_ml(getPrice);
+                        break;
+                }
+              }
+            });
+          });
         console.log(game);
 
-        switch (game) {
-            case "Valorant":
-                save_valorant();
-                break;
-            case "PUBG Mobile":
-                save_pubgm();
-                break;
-            case "Genshin Impact":
-                save_genshin();
-                break;
-            case "Mobile Legend":
-                save_ml();
-                break;
-        }
+        
     }
 });
 
-function save_valorant() {
+var databaseRef = firebase.database().ref('Transaction/');
+function save_valorant(price) {
     var username = sessionStorage.getItem('username');
     var riotId = sessionStorage.getItem('riotId');
     var tagline = sessionStorage.getItem('tagline');
     var game = sessionStorage.getItem('game');
     var email = sessionStorage.getItem('email');
-    var price = sessionStorage.getItem('price');
+    var product = sessionStorage.getItem('product');
     var payment = sessionStorage.getItem('payment');
 
     var textNama = document.getElementById("textNama");
+    var textPrice = document.getElementById("textHarga");
     var textTagline = document.getElementById("textTagline");
     var textEmail = document.getElementById("textEmail");
-    var textPrice = document.getElementById("textPrice");
+    var textProduct = document.getElementById("textProduct");
     var textPayment = document.getElementById("textPayment");
 
     textNama.value = riotId;
+    textPrice.value = price;
     textTagline.value = tagline;
     textEmail.value = email;
-    textPrice.value = price;
+    textProduct.value = product;
     textPayment.value = payment;
-
+    
     var submitForm = document.getElementById("submitForm");
     submitForm.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -56,9 +73,9 @@ function save_valorant() {
                 tagline: tagline,
                 game: game,
                 email: email,
-                selectedProduct: price,
+                product: product,
                 username: username,
-                selectedPayment: payment
+                payment: payment
             }
 
             var updates = {};
@@ -72,7 +89,7 @@ function save_valorant() {
     });
 }
 
-function save_ml() {
+function save_ml(price) {
     var label = document.querySelector('label[for="textTagline"]');
     label.textContent = "Zone";
     label.setAttribute("placeholder", "Zone");
@@ -82,19 +99,21 @@ function save_ml() {
     var zone = sessionStorage.getItem('zone');
     var game = sessionStorage.getItem('game');
     var email = sessionStorage.getItem('email');
-    var price = sessionStorage.getItem('price');
+    var product = sessionStorage.getItem('product');
     var payment = sessionStorage.getItem('payment');
 
     var textNama = document.getElementById("textNama");
     var textZone = document.getElementById("textTagline");
     var textEmail = document.getElementById("textEmail");
-    var textPrice = document.getElementById("textPrice");
+    var textProduct = document.getElementById("textProduct");
     var textPayment = document.getElementById("textPayment");
+    var textPrice = document.getElementById("textHarga");
 
     textNama.value = Id;
+    textPrice.value = price;
     textZone.value = zone;
     textEmail.value = email;
-    textPrice.value = price;
+    textProduct.value = product;
     textPayment.value = payment;
 
     var submitForm = document.getElementById("submitForm");
@@ -108,9 +127,9 @@ function save_ml() {
                 zone: zone,
                 game: game,
                 email: email,
-                selectedProduct: price,
+                product: product,
                 username: username,
-                selectedPayment: payment
+                payment: payment
             }
 
             var updates = {};
@@ -124,7 +143,7 @@ function save_ml() {
     });
 }
 
-function save_pubgm() {
+function save_pubgm(price) {
     var label = document.querySelector('label[for="textTagline"]');
     label.textContent = "";
     label.setAttribute("placeholder", "");
@@ -135,15 +154,18 @@ function save_pubgm() {
     var Id = sessionStorage.getItem('Id');
     var game = sessionStorage.getItem('game');
     var email = sessionStorage.getItem('email');
-    var price = sessionStorage.getItem('price');
+    var product = sessionStorage.getItem('product');
     var payment = sessionStorage.getItem('payment');
 
     var textNama = document.getElementById("textNama");
     var textEmail = document.getElementById("textEmail");
-    var textPrice = document.getElementById("textPrice");
+    var textProduct = document.getElementById("textProduct");
     var textPayment = document.getElementById("textPayment");
+    var textPrice = document.getElementById("textHarga");
+
 
     textNama.value = Id;
+    textProduct.value = product;
     textEmail.value = email;
     textPrice.value = price;
     textPayment.value = payment;
@@ -158,9 +180,9 @@ function save_pubgm() {
                 Id: Id,
                 game: game,
                 email: email,
-                selectedProduct: price,
+                product: product,
                 username: username,
-                selectedPayment: payment
+                payment: payment
             }
 
             var updates = {};
@@ -174,7 +196,7 @@ function save_pubgm() {
     });
 }
 
-function save_genshin() {
+function save_genshin(price) {
     var label = document.querySelector('label[for="textTagline"]');
     label.textContent = "Server";
     label.setAttribute("placeholder", "Server");
@@ -184,16 +206,18 @@ function save_genshin() {
     var server = sessionStorage.getItem('server');
     var game = sessionStorage.getItem('game');
     var email = sessionStorage.getItem('email');
-    var price = sessionStorage.getItem('price');
+    var product = sessionStorage.getItem('product');
     var payment = sessionStorage.getItem('payment');
 
     var textNama = document.getElementById("textNama");
     var textTagline = document.getElementById("textTagline");
     var textEmail = document.getElementById("textEmail");
-    var textPrice = document.getElementById("textPrice");
+    var textProduct = document.getElementById("textProduct");
+    var textPrice = document.getElementById("textHarga");
     var textPayment = document.getElementById("textPayment");
 
     textNama.value = Id;
+    textProduct.value = product;
     textTagline.value = server;
     textEmail.value = email;
     textPrice.value = price;
@@ -210,9 +234,9 @@ function save_genshin() {
                 server: server,
                 game: game,
                 email: email,
-                selectedProduct: price,
+                product: product,
                 username: username,
-                selectedPayment: payment
+                payment: payment
             }
 
             var updates = {};
