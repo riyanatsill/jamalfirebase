@@ -70,7 +70,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         // Redirect to the next page
         alert('Successfully');
         //
-        location.assign("success.html");
+        location.assign(selectedPayment + ".html");
         console.log('Data stored to Firebase:', riotId, tagline, email);
         console.log('Selected Price:', selectedPrice.value);
         console.log('Selected Payment:', selectedPayment.value);
