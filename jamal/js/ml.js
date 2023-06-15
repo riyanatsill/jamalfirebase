@@ -88,7 +88,7 @@ var databaseRef = firebase.database().ref('Transaction/');
                   sessionStorage.setItem('Id', Id);
                   sessionStorage.setItem('zone', zone);
                   sessionStorage.setItem('game', game);
-                  sessionStorage.setItem('email', email);
+                  sessionStorage.setItem('email2', email);
                   sessionStorage.setItem('product', selectedProduct);
                   sessionStorage.setItem('payment', selectedPayment);
                   }else {

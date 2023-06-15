@@ -47,13 +47,11 @@ const productRadioButtons = document.querySelectorAll('input[name="price"]');
 
 
                     var databaseRef = firebase.database().ref('Transaction/');
-                    let fix = "false";
                 
                     document.getElementById('pubgmForm').addEventListener('submit', function(event) {
                             event.preventDefault(); // Prevent form submission
                             const Id = document.getElementById('uid').value.trim();
                             const email = document.getElementById('gmail').value.trim();
-                            var spayment = document.querySelector('input[name="payment"]').value;
         
                             // Retrieve selected radio button values
                             const selectedPrice = document.querySelector('input[name="price"]:checked');
@@ -84,7 +82,7 @@ const productRadioButtons = document.querySelectorAll('input[name="price"]');
                         if (username) {
                           sessionStorage.setItem('Id', Id);
                           sessionStorage.setItem('game', game);
-                          sessionStorage.setItem('email', email);
+                          sessionStorage.setItem('email2', email);
                           sessionStorage.setItem('product', selectedProduct);
                           sessionStorage.setItem('payment', selectedPayment);
                     }else {

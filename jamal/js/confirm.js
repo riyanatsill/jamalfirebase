@@ -1,7 +1,6 @@
 window.addEventListener('load', function() {
     var isLoggedIn = sessionStorage.getItem('isLoggedIn');
     if (isLoggedIn !== 'true') {
-        // Redirect to the login page if not logged in
         location.assign("login.html");
         
     } else {
@@ -9,10 +8,8 @@ window.addEventListener('load', function() {
         var product = sessionStorage.getItem('product');
         var databaseRef = firebase.database().ref('Product');
         databaseRef.orderByChild('product').equalTo(product).once('value', function(snapshot) {
-            var found = false;
             snapshot.forEach(function(childSnapshot) {
               var data = childSnapshot.val();
-              console.log(data.product);
               if(data.product === product){
                 var getPrice = data.price;
                 found = true;
@@ -32,10 +29,7 @@ window.addEventListener('load', function() {
                 }
               }
             });
-          });
-        console.log(game);
-
-        
+          });        
     }
 });
 
@@ -45,7 +39,7 @@ function save_valorant(price) {
     var riotId = sessionStorage.getItem('riotId');
     var tagline = sessionStorage.getItem('tagline');
     var game = sessionStorage.getItem('game');
-    var email = sessionStorage.getItem('email');
+    var email = sessionStorage.getItem('email2');
     var product = sessionStorage.getItem('product');
     var payment = sessionStorage.getItem('payment');
 
@@ -82,7 +76,7 @@ function save_valorant(price) {
             var updates = {};
             updates['/Transaction/' + uid] = data;
             firebase.database().ref().update(updates);
-            console.log('Data stored to Firebase:', data);
+            alert('Successfully');
             location.assign("success.html");
         } else {
             console.log('User session not found. Please login first.');
@@ -136,7 +130,7 @@ function save_ml(price) {
             var updates = {};
             updates['/Transaction/' + uid] = data;
             firebase.database().ref().update(updates);
-            console.log('Data stored to Firebase:', data);
+            alert('Successfully');
             location.assign("success.html");
         } else {
             console.log('User session not found. Please login first.');
@@ -189,7 +183,7 @@ function save_pubgm(price) {
             var updates = {};
             updates['/Transaction/' + uid] = data;
             firebase.database().ref().update(updates);
-            console.log('Data stored to Firebase:', data);
+            alert('Successfully');
             location.assign("success.html");
         } else {
             console.log('User session not found. Please login first.');
@@ -243,7 +237,7 @@ function save_genshin(price) {
             var updates = {};
             updates['/Transaction/' + uid] = data;
             firebase.database().ref().update(updates);
-            console.log('Data stored to Firebase:', data);
+            alert('Successfully');
             location.assign("success.html");
         } else {
             console.log('User session not found. Please login first.');

@@ -1,7 +1,7 @@
 // Get all the radio buttons for products
 const productRadioButtons = document.querySelectorAll('input[name="price"]');
                   
-let selectedProductDiv = null; // Keep track of the selected product div
+let selectedProductDiv = null;
 
 // Add event listener to each product radio button
 productRadioButtons.forEach(function (radio) {
@@ -22,26 +22,22 @@ productRadioButtons.forEach(function (radio) {
   });
 });
 
-// Get all the radio buttons for products
+
 const paymentRadioButtons = document.querySelectorAll('input[name="payment"]');
 
-let selectedProductDiv2 = null; // Keep track of the selected product div
+let selectedProductDiv2 = null;
 
-// Add event listener to each product radio button
 paymentRadioButtons.forEach(function (radio) {
   radio.addEventListener('click', function () {
-    // Get the parent div of the radio button
     const div = this.parentElement;
 
-    // Restore the background color of the previously selected product div, if any
     if (selectedProductDiv2 !== null && selectedProductDiv2 !== div) {
       selectedProductDiv2.style.backgroundColor = '#E8E8E8';
     }
 
-    // Change the background color of the current product div
     if (this.checked) {
-      selectedProductDiv2 = div; // Store the current product div as the selected div
-      div.style.backgroundColor = 'rgb(139, 192, 253)'; // Change the color to your desired value
+      selectedProductDiv2 = div;
+      div.style.backgroundColor = 'rgb(139, 192, 253)';
     }
   });
 });
@@ -83,11 +79,10 @@ var databaseRef = firebase.database().ref('Transaction/');
 
             
                 if (username) {
-
                   sessionStorage.setItem('Id', Id);
                   sessionStorage.setItem('server', server);
                   sessionStorage.setItem('game', game);
-                  sessionStorage.setItem('email', email);
+                  sessionStorage.setItem('email2', email);
                   sessionStorage.setItem('product', selectedProduct);
                   sessionStorage.setItem('payment', selectedPayment);
                   }else {
@@ -95,11 +90,9 @@ var databaseRef = firebase.database().ref('Transaction/');
                   }
             }
 
-            // Check if the user is logged in when the page loads
-      window.addEventListener('load', function() {
+        window.addEventListener('load', function() {
         var isLoggedIn = sessionStorage.getItem('isLoggedIn');
         if (isLoggedIn !== 'true') {
-          // Redirect to the login page if not logged in
           location.assign("login.html");
         }
       });

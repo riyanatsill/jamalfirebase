@@ -14,6 +14,11 @@
             return;
             }
 
+      if (newPassword.length < 5) {
+            alert('Password should be a minimum of 5 characters.');
+            return;
+            }
+
       // Get the user's email and username from session storage
       var userUsername = sessionStorage.getItem('username');
     

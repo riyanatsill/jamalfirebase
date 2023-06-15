@@ -14,6 +14,15 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
+    if (username.length < 5) {
+        alert('Username should be a minimum of 5 characters.');
+        return;
+    }
+
+    if (password.length < 5) {
+        alert('Password should be a minimum of 5 characters.');
+        return;
+    }
     // Check if the username or email already exists in the database
     databaseRef.once('value').then(function(snapshot) {
         var users = snapshot.val();
@@ -45,6 +54,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             // Check if the user confirmed the logout
             if (confirmed) {
                 // Clear the session storage
+                alert("Account created successfully");
                 save_valorant();
                 // Redirect to the login page
                 location.assign("login.html");

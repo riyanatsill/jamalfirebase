@@ -7,7 +7,7 @@ function check_login(){
             return null;
 }
 
-var username = check_login(); // Replace getSessionUsername() with your function to retrieve the username from the session
+var username = check_login();
 
 if (username) {
 var tbHistory = document.getElementById('tb_history');
@@ -35,13 +35,13 @@ databaseRef.once('value', function(snapshot) {
       cellProduct.appendChild(document.createTextNode(childData.product));
       cellPayment.appendChild(document.createTextNode(childData.payment));
       
-    // Create a delete button element
-    var deleteButton = document.createElement("button");
+      // Create a delete button element
+      var deleteButton = document.createElement("button");
       deleteButton.innerHTML = "Delete";
 
       // Assign a click event handler to the delete button
       deleteButton.addEventListener("click", function() {
-        var confirmation = confirm("Are you sure you want to delete this transaction?"); // Display a confirmation dialog
+      var confirmation = confirm("Are you sure you want to delete this transaction?"); // Display a confirmation dialog
 
       if (confirmation) {
       deleteTransaction(childKey); // Call a function to delete the transaction with the given childKey
