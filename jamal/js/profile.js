@@ -15,7 +15,6 @@
             }
 
       // Get the user's email and username from session storage
-      var userEmail = sessionStorage.getItem('email');
       var userUsername = sessionStorage.getItem('username');
     
       firebase.database().ref('User/').orderByChild('username').equalTo(userUsername).once('value', function(snapshot) {

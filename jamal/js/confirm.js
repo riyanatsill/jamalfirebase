@@ -3,6 +3,7 @@ window.addEventListener('load', function() {
     if (isLoggedIn !== 'true') {
         // Redirect to the login page if not logged in
         location.assign("login.html");
+        
     } else {
         var game = sessionStorage.getItem("game");
         var product = sessionStorage.getItem('product');
